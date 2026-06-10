@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARIA Business Command Center — Pure Meditation</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;background:#050507;color:#cdebd2;min-height:100vh}header{padding:18px 22px;border-bottom:1px solid rgba(0,255,136,.15);background:rgba(0,255,136,.03);display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}h1{font-size:18px;color:#00ff88;letter-spacing:.18em}header p{font-size:11px;color:rgba(205,235,210,.55);margin-top:5px}.pill{border:1px solid rgba(0,255,136,.35);color:#00ff88;padding:7px 11px;border-radius:999px;font-size:11px}.grid{display:grid;grid-template-columns:280px 1fr 320px;min-height:calc(100vh - 76px)}aside,.right{border-right:1px solid rgba(255,255,255,.07);padding:16px}.right{border-right:0;border-left:1px solid rgba(255,255,255,.07)}main{padding:18px;overflow:auto}.panel{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;margin-bottom:14px}.panel h2{font-size:12px;color:#00ff88;letter-spacing:.12em;margin-bottom:12px}.btn{width:100%;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.4);color:#00ff88;padding:11px 12px;border-radius:8px;font-family:inherit;cursor:pointer;margin-bottom:8px;text-align:left}.btn:hover{background:rgba(0,255,136,.12)}.btn.red{border-color:#ff4455;color:#ff4455;background:rgba(255,68,85,.06)}.btn.yellow{border-color:#ffdd00;color:#ffdd00;background:rgba(255,221,0,.06)}textarea,input{width:100%;background:#08080b;color:#cdebd2;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px;font-family:inherit;font-size:12px;margin-bottom:8px}textarea{min-height:100px;resize:vertical}.small{font-size:11px;color:rgba(205,235,210,.5);line-height:1.6}.task{padding:10px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;display:flex;gap:9px}.task input{width:auto}.task.done{opacity:.45;text-decoration:line-through}.output{white-space:pre-wrap;line-height:1.72;font-size:13px;background:#07070a;border:1px solid rgba(0,255,136,.12);border-radius:12px;padding:18px;min-height:500px}.kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px}.kpi label{font-size:10px;color:rgba(205,235,210,.5)}.kpi input{margin-top:4px}.metric{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05);padding:7px 0;font-size:12px}.metric strong{color:#00ff88}.tag{display:inline-block;font-size:10px;padding:3px 7px;border-radius:999px;border:1px solid rgba(0,255,136,.25);color:#00ff88;margin:2px}@media(max-width:980px){.grid{grid-template-columns:1fr}aside,.right{border:0;border-bottom:1px solid rgba(255,255,255,.07)}}
+</style>
+</head>
+<body>
+<header>
+<div><h1>◈ ARIA COMMAND CENTER</h1><p>Pure Meditation autonomous business operations — drafts, checklists, revenue actions, SEO, content, support.</p></div>
+<div class="pill" id="today"></div>
+</header>
+<div class="grid">
+<aside>
+<div class="panel">
+<h2>RUN ARIA</h2>
+<button class="btn" onclick="dailyRun()">▶ Generate Daily Business Output</button>
+<button class="btn" onclick="weeklyRun()">◆ Generate Weekly Growth Brief</button>
+<button class="btn" onclick="seoRun()">◎ Generate SEO Plan</button>
+<button class="btn" onclick="supportRun()">◉ Generate Support Replies</button>
+<button class="btn yellow" onclick="approvalRun()">⚠ Approval Queue</button>
+<button class="btn red" onclick="clearOutput()">■ Clear Output</button>
+</div>
+<div class="panel">
+<h2>DAILY CHECKLIST</h2>
+<div id="checklist"></div>
+</div>
+<div class="panel">
+<h2>POSITIONING</h2>
+<p class="small">Just meditation. No bloat. No tricks. Cancel anytime.</p><br>
+<span class="tag">Anxiety +200%</span><span class="tag">Focus +120%</span><span class="tag">Energy +54%</span><span class="tag">86.1% negative reviews</span>
+</div>
+</aside>
+<main>
+<div class="panel">
+<h2>ARIA OUTPUT</h2>
+<div class="output" id="output">Press “Generate Daily Business Output” to start running the business today.</div>
+</div>
+</main>
+<div class="right">
+<div class="panel">
+<h2>KPI INPUTS</h2>
+<div class="kpi">
+<div><label>Visitors</label><input id="visitors" type="number" value="0"></div>
+<div><label>Free Signups</label><input id="free" type="number" value="0"></div>
+<div><label>Base Subs</label><input id="base" type="number" value="0"></div>
+<div><label>Pro Subs</label><input id="pro" type="number" value="0"></div>
+<div><label>Premium Subs</label><input id="premium" type="number" value="0"></div>
+<div><label>TikTok Views</label><input id="views" type="number" value="0"></div>
+<div><label>Cancellations</label><input id="cancels" type="number" value="0"></div>
+<div><label>Streaming Streams</label><input id="streams" type="number" value="0"></div>
+</div>
+<button class="btn" onclick="calcRevenue()">Calculate Revenue Snapshot</button>
+</div>
+<div class="panel">
+<h2>REVENUE SNAPSHOT</h2>
+<div id="revenue"></div>
+</div>
+<div class="panel">
+<h2>HUMAN APPROVAL RULE</h2>
+<p class="small">ARIA drafts everything. Jasmine approves money, legal, billing, medical, platform account, and public-send actions with:</p><br><p class="pill">APPROVED — EXECUTE</p>
+</div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id); $('today').textContent=new Date().toLocaleString();
+const checklistItems=['Post TikTok 7:30 AM','Post TikTok 12:30 PM','Post TikTok 8:00 PM','Check Stripe/PayPal revenue','Reply to support','Add 1 SEO draft','Check free → paid conversion','Review approval queue','Log KPIs'];
+function renderChecklist(){ $('checklist').innerHTML=checklistItems.map((x,i)=>`<div class="task" id="task${i}"><input type="checkbox" onchange="this.parentElement.classList.toggle('done',this.checked)"><span>${x}</span></div>`).join('') } renderChecklist();
+function kpis(){return{visitors:+$('visitors').value,free:+$('free').value,base:+$('base').value,pro:+$('pro').value,premium:+$('premium').value,views:+$('views').value,cancels:+$('cancels').value,streams:+$('streams').value}}
+function calcRevenue(){const k=kpis();const gross=k.base*20+k.pro*29.99+k.premium*49.99;const fees=gross*.04;const stream=k.streams*.0045*.85;const net=(gross-fees+stream-150);$('revenue').innerHTML=`<div class="metric"><span>Gross MRR</span><strong>$${gross.toFixed(2)}</strong></div><div class="metric"><span>Payment Fees Est.</span><strong>-$${fees.toFixed(2)}</strong></div><div class="metric"><span>Streaming Est.</span><strong>$${stream.toFixed(2)}</strong></div><div class="metric"><span>Net Monthly Est.</span><strong>$${Math.max(0,net).toFixed(2)}</strong></div><div class="metric"><span>Net Daily Est.</span><strong>$${Math.max(0,net/30).toFixed(2)}</strong></div>`}
+function dailyRun(){const k=kpis();const focus=k.free>100?'Free → Base conversion':'Traffic + first signups';$('output').textContent=`# ARIA DAILY BUSINESS OUTPUT — ${new Date().toLocaleDateString()}
+
+## 1. REVENUE PRIORITY TODAY
+${focus}
+
+Action: Push the simplest offer: “Try Pure Meditation free. Upgrade only when you want unlimited, no ads, and offline access.”
+
+## 2. TIKTOK SCRIPT 1 — ANXIETY
+HOOK: Your anxiety is not a personality flaw. It is your nervous system asking for a reset.
+VALUE: Most meditation apps add more noise — stories, feeds, coaching, endless menus. Pure Meditation strips it down to healing frequencies designed for calm: theta, alpha, 432 Hz, and grounding tones.
+CTA: Try the free tier. No bloat. Cancel anytime.
+
+## 3. TIKTOK SCRIPT 2 — FOCUS
+HOOK: Stop forcing focus. Entrain it.
+VALUE: 40 Hz gamma is linked to attention, working memory, and cognitive activation. Pure Meditation uses frequency-based focus tracks so your brain has a rhythm to lock onto.
+CTA: Open Pure Meditation and play Sharp Focus.
+
+## 4. TIKTOK SCRIPT 3 — FREQUENCY SCIENCE
+HOOK: 432 Hz is not magic. It is a signal your nervous system recognizes as calm.
+VALUE: Pairing 432 Hz tuning with binaural beats gives the brain a stable auditory pattern. That is the point — less effort, more entrainment.
+CTA: Link in bio. Start free.
+
+## 5. THREADS POST
+1/ Meditation apps got too complicated.
+2/ Users asked for one thing: simple meditation, no bloat, no billing tricks.
+3/ Pure Meditation uses healing frequencies instead of endless menus.
+4/ Anxiety + focus are the lead categories because demand is rising fastest.
+5/ No tricks. Cancel anytime. Just press play.
+
+## 6. EMAIL CAMPAIGN
+SUBJECT: Your nervous system does not need another complicated app
+PREVIEW: Just frequencies. No bloat. Cancel anytime.
+BODY:
+Most meditation apps became everything except meditation.
+
+Pure Meditation is different: 37 focused healing frequency tracks for anxiety, focus, sleep, energy, and fitness.
+
+Start free. Upgrade only when you want unlimited listening, no ads, offline downloads, or guided sessions.
+
+CTA: Start Pure Meditation today.
+
+## 7. SUPPORT REPLY TEMPLATE
+Thanks for reaching out. Pure Meditation is built to be simple: no hidden cancellation, no bloated feed, no confusing library. If you are using the free tier, you get 30 minutes/month. Base unlocks unlimited listening with no ads. Pro adds 50 offline downloads. Premium adds Guided Sessions and 200 downloads.
+
+## 8. SEO TASK TODAY
+Write/publish: “Best Meditation App for Anxiety Without Bloat”
+Keyword: meditation app for anxiety
+CTA: Try Pure Meditation free.
+
+## 9. APPROVAL NEEDED
+- Any mass email send
+- Any paid ad spend
+- Any billing/refund case
+- Any medical claim beyond wellness language
+`}
+function weeklyRun(){const k=kpis();$('output').textContent=`# WEEKLY ARIA GROWTH BRIEF
+
+## 1. KPI SNAPSHOT
+Visitors: ${k.visitors}
+Free signups: ${k.free}
+Base: ${k.base}
+Pro: ${k.pro}
+Premium: ${k.premium}
+TikTok views: ${k.views}
+Cancellations: ${k.cancels}
+Streams: ${k.streams}
+
+## 2. REVENUE MOVE THIS WEEK
+Create a Free → Base push: “Unlimited anxiety + focus sessions, no ads, 14-day trial.” Place it after every free user plays 20 minutes.
+
+## 3. VIRAL ANGLE
+Hook: “86% of meditation app reviews are negative. Here’s why.”
+Message: apps became bloated, billing got shady, users want simple meditation.
+CTA: Pure Meditation — no bloat, cancel anytime.
+
+## 4. PREMIUM TRIGGER
+Add 60-second Guided Session previews for non-Premium users. Lock after preview with: “Unlock all 13 Guided Sessions with Premium.”
+
+## 5. SEO PLAN
+Publish 3 posts:
+- Meditation app for anxiety without bloat
+- 40 Hz focus music for deep work
+- 432 Hz vs 528 Hz explained
+
+## 6. RETENTION ACTION
+Send Day 3 email to free users: “Your brain needs repetition. Use your next 10 minutes today.”
+`}
+function seoRun(){ $('output').textContent=`# SEO PLAN — PURE MEDITATION
+
+## Top Keywords
+1. meditation app for anxiety
+2. anxiety meditation app
+3. simple meditation app
+4. meditation app no ads
+5. meditation app easy cancel
+6. focus meditation app
+7. 40 Hz focus music
+8. binaural beats for anxiety
+9. healing frequency app
+10. solfeggio frequency app
+
+## Publish First
+Title: Best Meditation App for Anxiety Without Bloat
+Slug: /blog/best-meditation-app-for-anxiety-without-bloat
+Meta: Pure Meditation is a simple frequency-based meditation app for anxiety, focus, sleep, energy, and fitness. No bloat. Cancel anytime.
+
+## Outline
+H1: Best Meditation App for Anxiety Without Bloat
+H2: Why users are frustrated with meditation apps
+H2: What anxiety meditation users actually want
+H2: How healing frequencies support calm
+H2: Why Pure Meditation is simpler
+H2: Pricing and cancel-anytime policy
+CTA: Start free
+`}
+function supportRun(){ $('output').textContent=`# SUPPORT REPLY DRAFTS
+
+## Billing / Cancel
+I’m sorry for the frustration. Pure Meditation is built around transparent cancellation — no tricks, no hidden buttons. You can cancel anytime, and your access continues through the end of the billing period. If you need help locating your subscription, send the email used at signup and I’ll help verify it.
+
+Approval required before refunds or account changes.
+
+## Binaural Beats Skepticism
+Great question. Binaural beats are an audio technique where each ear receives a slightly different frequency, creating a perceived beat frequency in the brain. Pure Meditation uses this as a wellness tool for relaxation, focus, and sleep support. It is not a medical device and does not replace professional care.
+
+## Tier Difference
+Base gives unlimited listening with no ads. Pro adds 50 offline downloads and exclusive tracks. Premium adds 200 downloads, Guided Sessions, and priority support. If you want simple unlimited listening, Base is enough. If you want guided protocols, Premium is the best fit.
+`}
+function approvalRun(){ $('output').textContent=`# APPROVAL QUEUE
+
+## Always Needs Jasmine Approval
+- Refunds
+- Chargebacks
+- Pricing changes
+- Payment processor changes
+- BMI/SoundExchange/RouteNote submissions
+- Mass emails
+- Paid ads
+- Legal copy changes
+- Medical/scientific claims
+- Customer crisis messages
+
+## Approval Phrase
+APPROVED — EXECUTE
+
+## Current Recommended Approvals
+1. Approve first 3 TikTok scripts for posting.
+2. Approve first SEO article title.
+3. Approve RouteNote distribution checklist after tracks are generated.
+4. Approve Stripe/PayPal live-mode testing after deployment.
+`}
+function clearOutput(){ $('output').textContent='Output cleared. Run ARIA again.' }
+calcRevenue();
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+# STRIPE & PAYPAL SETUP — PURE MEDITATION
+## Complete Step-by-Step Guide
+
+---
+
+# PART 1: STRIPE SETUP
+## Estimated Time: 20 minutes
+
+---
+
+## STEP 1 — CREATE YOUR STRIPE ACCOUNT
+
+1. Go to **https://stripe.com**
+2. Click **"Start now"**
+3. Enter your email + create password
+4. Verify your email (check inbox for confirmation link)
+5. Log in to your Stripe Dashboard
+
+---
+
+## STEP 2 — COMPLETE ACCOUNT ACTIVATION (Required to receive money)
+
+1. In Stripe Dashboard, click **"Activate your account"** (top of screen)
+2. Fill out:
+   - **Business type:** Individual or Company (Individual if you're solo)
+   - **Business name:** Pure Meditation (or wearemomentum)
+   - **Business website:** https://wearemomentum.netlify.app
+   - **Industry:** Software / SaaS / Online Services
+   - **Business address:** Your Kalamazoo address
+   - **Phone number:** Your number
+3. Add your **bank account** for payouts:
+   - Click **"Add bank account"**
+   - Enter your routing + account number
+4. Add your **SSN** (last 4 digits for individual)
+5. Click **Submit**
+
+> ⚠️ You can get API keys immediately — you don't need to wait for activation to start testing.
+
+---
+
+## STEP 3 — GET YOUR API KEYS
+
+1. In the left sidebar, click **"Developers"**
+2. Click **"API keys"**
+3. You'll see two keys:
+
+```
+Publishable key:  pk_live_xxxxxxxxxxxxxxxxxxxx
+Secret key:       sk_live_xxxxxxxxxxxxxxxxxxxx
+```
+
+4. Click **"Reveal live key"** next to the Secret key
+5. **Copy the Secret key** — you'll put this in Railway
+
+> ⚠️ NEVER put the Secret key in your HTML/frontend code. Backend only.
+
+---
+
+## STEP 4 — CREATE YOUR PRODUCTS (3 plans)
+
+This is important — create a Product for each tier you sell, then create Prices under each Product for monthly billing.
+
+### Create Base Plan ($20/month):
+1. In left sidebar → **"Product catalog"**
+2. Click **"+ Add product"**
+3. Fill in:
+   - **Name:** Pure Meditation — Base
+   - **Description:** Unlimited meditation, no ads, 14-day free trial
+   - **Image:** (optional — upload your logo)
+4. Under **Pricing**, set:
+   - **Pricing model:** Standard pricing
+   - **Price:** `20.00`
+   - **Currency:** USD
+   - **Billing period:** Monthly
+5. Click **"Save product"**
+6. **Copy the Price ID** — looks like `price_1Abc...` — save it somewhere
+
+### Create Pro Plan ($29.99/month):
+1. Click **"+ Add product"** again
+2. Fill in:
+   - **Name:** Pure Meditation — Pro
+   - **Description:** Unlimited + 50 offline downloads + exclusive tracks
+3. Under **Pricing**:
+   - **Price:** `29.99`
+   - **Currency:** USD
+   - **Billing period:** Monthly
+4. Click **"Save product"**
+5. **Copy the Price ID**
+
+### Create Premium Plan ($49.99/month):
+1. Click **"+ Add product"** again
+2. Fill in:
+   - **Name:** Pure Meditation — Premium
+   - **Description:** Unlimited + 200 downloads + 4 coaching sessions/month
+3. Under **Pricing**:
+   - **Price:** `49.99`
+   - **Currency:** USD
+   - **Billing period:** Monthly
+4. Click **"Save product"**
+5. **Copy the Price ID**
+
+> You should now have 3 Price IDs saved. They look like: `price_1Abc123XYZ`
+
+---
+
+## STEP 5 — SET UP WEBHOOK (So Stripe tells your backend when someone pays)
+
+Navigate to Developers > Webhooks and click Add endpoint.
+
+1. In left sidebar → **"Developers"** → **"Webhooks"**
+2. Click **"+ Add endpoint"**
+3. **Endpoint URL:** `https://melo-backend-production-b12f.up.railway.app/webhook`
+4. Under **"Select events"**, add these events:
+   - `checkout.session.completed`
+   - `customer.subscription.deleted`
+   - `customer.subscription.updated`
+   - `invoice.payment_failed`
+5. Click **"Add endpoint"**
+6. Click on the webhook you just created
+7. Click **"Reveal"** next to **Signing secret**
+8. **Copy the Signing secret** — looks like `whsec_xxxxxxxxxxxx`
+
+---
+
+## STEP 6 — ADD KEYS TO RAILWAY
+
+Go to Railway → your backend project → **Variables** tab
+
+Add these 3 environment variables:
+
+```
+STRIPE_SECRET_KEY        = sk_live_xxxxxxxxxxxxxxxxxxxx
+STRIPE_WEBHOOK_SECRET    = whsec_xxxxxxxxxxxxxxxxxxxx
+FRONTEND_URL             = https://wearemomentum.netlify.app
+```
+
+Click **Deploy** after adding variables.
+
+---
+
+## STEP 7 — TEST STRIPE BEFORE GOING LIVE
+
+1. In Stripe Dashboard, toggle **"Test mode"** (top left — flip the switch)
+2. In Test mode, your test API keys look like `sk_test_...`
+3. Use test card number: **4242 4242 4242 4242**
+   - Expiry: any future date (e.g., 12/28)
+   - CVV: any 3 digits (e.g., 123)
+   - ZIP: any 5 digits (e.g., 10001)
+4. Go to your pricing page and click "Try Free for 14 Days"
+5. Complete a test checkout
+6. Check Stripe Dashboard → **"Payments"** — you should see a test charge
+7. Check your Railway backend logs — should show webhook received
+
+> When everything works in test mode, switch back to **Live mode** and replace test keys with live keys in Railway.
+
+---
+
+## STRIPE DONE ✅
+
+**What you now have:**
+- Stripe account activated
+- 3 subscription products created ($20 / $29.99 / $49.99)
+- Webhook configured
+- Keys added to Railway
+- Your checkout button redirects to Stripe's hosted page (handles Card + Apple Pay + Google Pay automatically)
+
+---
+---
+
+# PART 2: PAYPAL SETUP
+## Estimated Time: 20 minutes
+
+---
+
+## STEP 1 — CREATE A PAYPAL BUSINESS ACCOUNT
+
+> Skip this if you already have a PayPal business account
+
+1. Go to **https://www.paypal.com/business**
+2. Click **"Sign Up"**
+3. Select **"Business Account"**
+4. Enter your email + create password
+5. Enter your business info:
+   - **Business name:** Pure Meditation
+   - **Business type:** Individual / Sole Proprietor
+   - **Industry:** Software / Digital Services
+   - **Website:** https://wearemomentum.netlify.app
+6. Verify your email
+7. Link your bank account for receiving payouts
+
+---
+
+## STEP 2 — CREATE YOUR 3 SUBSCRIPTION PLANS
+
+Log into your PayPal business account and go to the "Pay & Get Paid" tab and click "Subscriptions" under the Accept Payments section.
+
+### Navigate there:
+1. Log into PayPal Business account
+2. Top menu → **"Pay & Get Paid"**
+3. Under "Accept Payments" → **"Subscriptions"**
+4. Click **"Create Plan"**
+
+---
+
+### Create Base Plan ($20/month):
+
+**Step A — Create the Product:**
+1. Click **"Create a subscription product"**
+2. Fill in:
+   - **Product name:** Pure Meditation — Base
+   - **Product type:** Digital Goods
+   - **Description:** Unlimited meditation, no ads, cancel anytime
+   - **Category:** Software
+3. Click **"Continue"**
+
+**Step B — Create the Plan:**
+1. **Plan name:** Base Monthly
+2. **Description:** Unlimited meditation access, no ads
+3. **Billing cycle:** Monthly
+4. **Price:** `20.00` USD
+5. **Auto bill outstanding:** Yes
+6. **Failed payment policy:** Continue subscription, retry payment
+7. Click **"Save Plan"**
+8. Click **"Turn on Plan"** to activate
+9. **COPY THE PLAN ID** — looks like `P-1AB234567XXXXX`
+
+---
+
+### Create Pro Plan ($29.99/month):
+
+1. Click **"Create Plan"** again
+2. Select the same Pure Meditation product you just created (or create a new one)
+3. Fill in:
+   - **Plan name:** Pro Monthly
+   - **Price:** `29.99` USD
+   - **Billing:** Monthly
+4. Save Plan → Turn on Plan
+5. **COPY THE PLAN ID**
+
+---
+
+### Create Premium Plan ($49.99/month):
+
+1. Click **"Create Plan"** again
+2. Fill in:
+   - **Plan name:** Premium Monthly
+   - **Price:** `49.99` USD
+   - **Billing:** Monthly
+4. Save Plan → Turn on Plan
+5. **COPY THE PLAN ID**
+
+---
+
+## STEP 3 — ADD PAYPAL PLAN IDs TO RAILWAY
+
+Go back to Railway → your backend → **Variables** tab
+
+Add these 3 environment variables:
+
+```
+PAYPAL_PLAN_ID_BASE      = P-xxxxxxxxxxxxxxxxxxxx
+PAYPAL_PLAN_ID_PRO       = P-xxxxxxxxxxxxxxxxxxxx
+PAYPAL_PLAN_ID_PREMIUM   = P-xxxxxxxxxxxxxxxxxxxx
+```
+
+Click **Deploy** after adding.
+
+---
+
+## STEP 4 — TEST PAYPAL
+
+1. Go to your pricing page
+2. Click any upgrade button
+3. In the checkout modal, click **"Pay with PayPal"**
+4. You should be redirected to PayPal's subscription page
+5. Log in with a personal PayPal account
+6. Click **"Agree & Subscribe"**
+7. You should be redirected back to your app
+
+> To test without charging yourself: PayPal has a Sandbox mode at developer.paypal.com — but the dashboard method above (direct plan links) works in live mode immediately.
+
+---
+
+## PAYPAL DONE ✅
+
+---
+---
+
+# PART 3: RAILWAY FINAL SETUP
+
+## All Environment Variables (Complete List)
+
+Go to Railway → your project → **Variables** tab.
+
+Add ALL of these:
+
+```
+# Stripe
+STRIPE_SECRET_KEY          = sk_live_xxxxxxxxxxxxxxxxxxxx
+STRIPE_WEBHOOK_SECRET      = whsec_xxxxxxxxxxxxxxxxxxxx
+
+# PayPal Plan IDs
+PAYPAL_PLAN_ID_BASE        = P-xxxxxxxxxxxxxxxxxxxx
+PAYPAL_PLAN_ID_PRO         = P-xxxxxxxxxxxxxxxxxxxx
+PAYPAL_PLAN_ID_PREMIUM     = P-xxxxxxxxxxxxxxxxxxxx
+
+# App Config
+FRONTEND_URL               = https://wearemomentum.netlify.app
+ADMIN_PASSWORD             = [your chosen admin password]
+DATABASE_URL               = (Railway sets this automatically if using Railway DB)
+```
+
+Click **Deploy** after adding all variables.
+
+---
+---
+
+# QUICK REFERENCE — WHERE TO FIND EVERYTHING
+
+| What You Need | Where To Find It |
+|---|---|
+| Stripe Secret Key | stripe.com → Developers → API Keys → Secret key |
+| Stripe Webhook Secret | stripe.com → Developers → Webhooks → [your endpoint] → Signing secret |
+| PayPal Base Plan ID | paypal.com → Pay & Get Paid → Subscriptions → Base plan → Plan ID |
+| PayPal Pro Plan ID | paypal.com → Pay & Get Paid → Subscriptions → Pro plan → Plan ID |
+| PayPal Premium Plan ID | paypal.com → Pay & Get Paid → Subscriptions → Premium plan → Plan ID |
+
+---
+
+# CHECKLIST — DO IN THIS ORDER
+
+### Stripe:
+- [ ] Create Stripe account at stripe.com
+- [ ] Activate account (add bank info + SSN)
+- [ ] Create 3 products ($20 / $29.99 / $49.99)
+- [ ] Get Secret key from API keys
+- [ ] Add webhook endpoint pointing to your Railway URL + /webhook
+- [ ] Copy webhook Signing secret
+- [ ] Add STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET to Railway
+- [ ] Test with card 4242 4242 4242 4242
+
+### PayPal:
+- [ ] Create/log into PayPal Business account at paypal.com/business
+- [ ] Go to Pay & Get Paid → Subscriptions
+- [ ] Create Base plan ($20/month) → copy Plan ID
+- [ ] Create Pro plan ($29.99/month) → copy Plan ID
+- [ ] Create Premium plan ($49.99/month) → copy Plan ID
+- [ ] Add all 3 PAYPAL_PLAN_ID_xxx to Railway
+- [ ] Test PayPal checkout on pricing page
+
+### Final:
+- [ ] Deploy Railway backend after adding all variables
+- [ ] Upload pricing_WITH_CHECKOUT.html to Netlify (as pricing.html)
+- [ ] Test all 4 payment methods on live site:
+  - [ ] Card
+  - [ ] Apple Pay (on iPhone/Safari)
+  - [ ] Google Pay (on Chrome)
+  - [ ] PayPal
+
+---
+
+# TOTAL TIME: ~40 minutes
+
+| Task | Time |
+|---|---|
+| Stripe account + activation | 10 min |
+| Stripe products + webhook | 5 min |
+| PayPal account setup | 10 min |
+| PayPal 3 subscription plans | 10 min |
+| Add keys to Railway | 3 min |
+| Test | 5 min |
+| **Total** | **~40 min** |
+
+---
+
+# TEST CARDS FOR STRIPE (Test Mode Only)
+
+| Card Number | What It Does |
+|---|---|
+| 4242 4242 4242 4242 | ✅ Successful payment |
+| 4000 0000 0000 0002 | ❌ Declined |
+| 4000 0025 0000 3155 | 🔐 Requires 3D Secure auth |
+| 4000 0000 0000 9995 | ❌ Insufficient funds |
+
+Use any future expiry date (12/28), any CVV (123), any ZIP (10001).
+
+---
+
+Everything you need is in this file. Follow the checklist top to bottom and you'll have both payment processors live in under an hour. 💳
