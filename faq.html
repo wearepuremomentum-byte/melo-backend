@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Pure Meditation</title>
+    <meta name="description" content="Frequently asked questions about Pure Meditation app">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .faq-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .faq-item h3:hover {
+            color: #764ba2;
+        }
+        
+        .faq-item p {
+            display: none;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .faq-item p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-item.active p {
+            display: block;
+        }
+        
+        .toggle {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .faq-item.active .toggle {
+            color: #764ba2;
+        }
+        
+        .strong-text {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>❓ Frequently Asked Questions</h1>
+        <p>Everything you need to know about Pure Meditation</p>
+    </header>
+    
+    <div class="container">
+        <div class="faq-item active">
+            <h3>What is Pure Meditation? <span class="toggle">−</span></h3>
+            <p>Pure Meditation is a simple, beautiful meditation app with 13 carefully curated meditations across 5 categories: Sleep, Focus, Anxiety, Energy, and Fitness. We believe simplicity works better than complexity. Instead of 1000 options causing decision paralysis, we offer the best meditation for each situation. No complicated features. No sleep stories. No coaching upsells. Just pure meditation that works.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Is Pure Meditation free? <span class="toggle">+</span></h3>
+            <p>Yes! Pure Meditation offers a <span class="strong-text">free tier with 30 minutes of meditation per month</span>. This gives you 3-4 full meditations to try every month. If you love it, upgrade to unlimited access. Our paid tiers are $20-50/month depending on features like offline downloads and exclusive tracks.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What are the different pricing tiers? <span class="toggle">+</span></h3>
+            <p><span class="strong-text">Free:</span> $0/month, 30 minutes per month, ad-supported, all categories access.</p>
+            <p><span class="strong-text">Base:</span> $20/month, unlimited meditation, no ads, 14-day free trial, all categories.</p>
+            <p><span class="strong-text">Pro:</span> $29.99/month, unlimited meditation, 50 offline downloads per month, exclusive Pro meditations, all categories.</p>
+            <p><span class="strong-text">Premium:</span> $49.99/month, unlimited meditation, 200 offline downloads per month, exclusive Premium tracks, priority support (2hr response), all categories.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What's new about the Fitness category? <span class="toggle">+</span></h3>
+            <p>Our Fitness category has 4 subcategories designed for different workout phases:</p>
+            <p><span class="strong-text">Pre-Workout Focus:</span> Uses beta/gamma frequencies for alertness and mental intensity before lifting, running, or competing. Prepares your nervous system for peak performance.</p>
+            <p><span class="strong-text">During Workout:</span> Repetitive rhythmic sounds for pacing, concentration, and getting in the zone—similar to workout music but optimized for meditation and focus.</p>
+            <p><span class="strong-text">Breathwork & Cardio:</span> Breathing guidance for steady-state cardio, yoga, mobility work, and martial arts. Helps regulate breathing and movement rhythm.</p>
+            <p><span class="strong-text">Recovery & Cooldown:</span> Calming soundscapes to lower stress hormones and shift from high-adrenaline back to recovery mode after intense training.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Can I download meditations for offline use? <span class="toggle">+</span></h3>
+            <p>Yes! With our <span class="strong-text">Pro tier</span>, you can download 50 meditations per month offline. With <span class="strong-text">Premium</span>, you get 200 downloads per month. This is perfect for workouts, travel, or places without reliable internet. Free and Base tiers require internet connection.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>How long are the meditations? <span class="toggle">+</span></h3>
+            <p>Meditations range from <span class="strong-text">5 minutes (Energy Boost)</span> to <span class="strong-text">60 minutes (Sleep Ocean)</span>. Most are 10-30 minutes. You can choose your duration based on your schedule:</p>
+            <p>• 5-10 min: Perfect for quick morning boosts or work breaks</p>
+            <p>• 15-20 min: Ideal for most situations and commutes</p>
+            <p>• 30+ min: Deep immersion for sleep and extended meditation</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Do I need to create an account? <span class="toggle">+</span></h3>
+            <p>Yes, creating an account is free and takes 30 seconds. Just enter your email and create a password (or sign up with Google/Apple). This lets you track your meditation progress, manage your subscription tier, and access your downloads across devices.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>How do I cancel my subscription? <span class="toggle">+</span></h3>
+            <p>You can cancel anytime with <span class="strong-text">just one click</span>. Go to Settings → Subscription → Cancel. No hidden fees. No guilt. No customer support calls. We only want you if you love Pure Meditation. If you cancel, you keep access until the end of your billing cycle.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What devices can I use Pure Meditation on? <span class="toggle">+</span></h3>
+            <p>Pure Meditation works on <span class="strong-text">iPhone, Android, iPad, Mac, Windows, and any device with a web browser</span>. It's a web app, so you don't need to download from app stores. You can also add it to your home screen to make it feel like a native app. Log in from any device and your progress syncs automatically.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Is Pure Meditation science-backed? <span class="toggle">+</span></h3>
+            <p>Yes. Our meditations use evidence-based techniques backed by neuroscience research:</p>
+            <p>• <span class="strong-text">Sleep meditations:</span> Binaural beats at 40Hz frequency for sleep onset and deep sleep</p>
+            <p>• <span class="strong-text">Focus meditations:</span> Lo-fi frequencies and 60 BPM tempo for optimal working brain states</p>
+            <p>• <span class="strong-text">Anxiety meditations:</span> Grounding techniques and safe/warm soundscapes</p>
+            <p>• <span class="strong-text">Energy meditations:</span> Uplifting frequencies for energy activation</p>
+            <p>• <span class="strong-text">Fitness meditations:</span> Rhythmic patterns and beta/gamma frequencies for performance</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Can I use fitness meditations during my workout? <span class="toggle">+</span></h3>
+            <p>Absolutely! Our <span class="strong-text">During-Workout</span> meditations are designed to play with headphones while you exercise. The rhythmic patterns maintain your pacing and help you stay focused. Our <span class="strong-text">Breathwork & Cardio</span> meditations are perfect for guided breathing during cardio or martial arts. Many users report 20-30% improved focus and endurance.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Does Pure Meditation collect my personal data? <span class="toggle">+</span></h3>
+            <p>We collect minimal data to make Pure Meditation work: your email, hashed password, and meditation history (for tracking your progress). We <span class="strong-text">never sell your data to third parties</span>. We don't track you across the web. Your payment information is processed by Stripe and we never store credit card details. See our full Privacy Policy for details.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What happens if I want to upgrade or downgrade my tier? <span class="toggle">+</span></h3>
+            <p>You can upgrade or downgrade anytime. Changes take effect immediately. If you upgrade, you pay a prorated amount. If you downgrade, we credit your account. Your meditation history and progress always stay with you, regardless of tier.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Can I track my meditation progress? <span class="toggle">+</span></h3>
+            <p>Yes! Your account automatically tracks:</p>
+            <p>• <span class="strong-text">Total meditations:</span> How many meditations you've completed</p>
+            <p>• <span class="strong-text">Total minutes:</span> Total minutes meditated (lifetime)</p>
+            <p>• <span class="strong-text">Streak:</span> Current meditation streak</p>
+            <p>• <span class="strong-text">Category breakdown:</span> How many meditations per category (sleep, focus, fitness, etc)</p>
+            <p>Progress is synced across all your devices. View your stats anytime in the app.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What if the meditations aren't working for me? <span class="toggle">+</span></h3>
+            <p>Meditation is personal. What works for one person might not work for another. <span class="strong-text">Try all 13 meditations</span> over a few weeks to see what resonates. Most users find their favorite after 2-3 sessions. If you're not feeling results after the 14-day free trial, you can cancel anytime—no questions asked. We're here to help, so contact us at support@puremeditation.com if you want personalized recommendations.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What if I have more questions? <span class="toggle">+</span></h3>
+            <p>We're here to help! Email us at <span class="strong-text">support@puremeditation.com</span> or visit our <span class="strong-text">Contact page</span>. We respond within 24 hours. You can also check out our Blog for meditation tips and insights, or read our full Privacy Policy and Terms of Service for complete details.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Pure Meditation. All rights reserved.</p>
+        <p>
+            <a href="/app.html">App</a> |
+            <a href="/blog/index.html">Blog</a> |
+            <a href="/contact.html">Contact</a> |
+            <a href="/privacy.html">Privacy</a> |
+            <a href="/terms.html">Terms</a>
+        </p>
+    </footer>
+    
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(h3 => {
+            h3.addEventListener('click', () => {
+                const item = h3.parentElement;
+                item.classList.toggle('active');
+                const toggle = h3.querySelector('.toggle');
+                toggle.textContent = item.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
