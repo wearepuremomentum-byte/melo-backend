@@ -1,10 +1,6 @@
 [build]
   publish = "."
   command = ""
-  ignore = "backend/"
-
-[build.environment]
-  PYTHON_VERSION = "3.12"
 
 [[redirects]]
   from = "/app"
@@ -34,4 +30,9 @@
 [[redirects]]
   from = "/terms"
   to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/aria/generate"
+  to = "/.netlify/functions/aria-generate"
   status = 200
