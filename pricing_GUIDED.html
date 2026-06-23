@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Pure Meditation</title>
+    <meta name="description" content="Pure Meditation pricing: Free, Base ($20), Pro ($29.99), Premium ($49.99)">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #333; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; text-align: center; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { opacity: 0.9; font-size: 1.1em; }
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .pricing-intro { text-align: center; margin-bottom: 60px; }
+        .pricing-intro h2 { color: #667eea; font-size: 2em; margin-bottom: 15px; }
+        .pricing-intro p { font-size: 1.1em; color: #666; margin-bottom: 10px; }
+        .pricing-tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 60px; }
+        .tier { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .tier:hover { transform: translateY(-10px); box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .tier.featured { border: 3px solid #667eea; position: relative; }
+        .tier.featured::before { content: "Most Popular"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8em; font-weight: 600; }
+        .tier-header { padding: 30px 20px; background: #f8f9fa; border-bottom: 2px solid #f0f4ff; }
+        .tier-name { font-size: 1.5em; color: #333; font-weight: 600; margin-bottom: 10px; }
+        .tier-price { font-size: 2.5em; color: #667eea; font-weight: bold; }
+        .tier-price-small { font-size: 0.8em; color: #999; }
+        .tier-description { padding: 20px; color: #666; font-size: 0.9em; min-height: 50px; }
+        .trial-badge { background: #d4edda; color: #155724; padding: 8px 12px; border-radius: 5px; font-size: 0.85em; font-weight: 600; margin-top: 10px; display: inline-block; }
+        .tier-features { padding: 20px; }
+        .feature { padding: 10px 0; display: flex; align-items: flex-start; }
+        .feature-icon { color: #667eea; font-weight: bold; margin-right: 10px; }
+        .feature-text { color: #555; font-size: 0.95em; }
+        .cta-button { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; margin-top: 20px; transition: all 0.3s; }
+        .cta-button:hover { transform: scale(1.05); }
+        .free-button { background: #f0f4ff; color: #667eea; border: 2px solid #667eea; }
+        .free-button:hover { background: #667eea; color: white; }
+        .comparison-table { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f0f4ff; color: #667eea; padding: 15px; text-align: left; font-weight: 600; }
+        td { padding: 15px; border-bottom: 1px solid #ddd; }
+        tr:last-child td { border-bottom: none; }
+        .feature-name { font-weight: 600; color: #333; min-width: 200px; }
+        .checkmark { color: #28a745; font-weight: bold; }
+        .included { background: #d4edda; }
+        .excluded { background: #f8f9fa; color: #999; }
+        .faq-section { margin-top: 60px; }
+        .faq-section h2 { color: #667eea; font-size: 1.8em; margin-bottom: 30px; }
+        .faq-item { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .faq-item h3 { color: #667eea; margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; }
+        .faq-item p { display: none; color: #555; line-height: 1.6; }
+        .faq-item.active p { display: block; }
+        footer { background: #333; color: white; padding: 30px 20px; text-align: center; margin-top: 60px; }
+        footer a { color: #667eea; text-decoration: none; margin: 0 10px; }
+        @media (max-width: 1024px) {
+            .pricing-tiers { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .pricing-tiers { grid-template-columns: 1fr; }
+            header h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💰 Pricing</h1>
+        <p>Choose the plan that's right for you</p>
+    </header>
+    
+    <div class="container">
+        <div class="pricing-intro">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>No hidden fees. Cancel anytime. Upgrade or downgrade whenever you want.</p>
+        </div>
+        
+        <!-- Pricing Tiers -->
+        <div class="pricing-tiers">
+            <!-- FREE TIER -->
+            <div class="tier">
+                <div class="tier-header">
+                    <div class="tier-name">Free</div>
+                    <div class="tier-price">$0<span class="tier-price-small">/month</span></div>
+                </div>
+                <div class="tier-description">Perfect for trying Pure Meditation</div>
+                <div class="tier-features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">30 minutes per month</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">All 5 categories</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">All meditations</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Ad-supported</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✗</span>
+                        <span class="feature-text">No offline downloads</span>
+                    </div>
+                    <button class="cta-button free-button">Already Free</button>
+                </div>
+            </div>
+            
+            <!-- BASE TIER -->
+            <div class="tier">
+                <div class="tier-header">
+                    <div class="tier-name">Base</div>
+                    <div class="tier-price">$20<span class="tier-price-small">/month</span></div>
+                </div>
+                <div class="tier-description">Unlimited access, no ads</div>
+                <div class="trial-badge">14-day free trial</div>
+                <div class="tier-features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Unlimited meditation</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">No ads</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">All 5 categories</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Advanced tracking</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✗</span>
+                        <span class="feature-text">No offline downloads</span>
+                    </div>
+                    <button class="cta-button" onclick="openCheckout('base')">Try Free for 14 Days</button>
+                </div>
+            </div>
+            
+            <!-- PRO TIER -->
+            <div class="tier featured">
+                <div class="tier-header">
+                    <div class="tier-name">Pro</div>
+                    <div class="tier-price">$29.99<span class="tier-price-small">/month</span></div>
+                </div>
+                <div class="tier-description">Offline downloads + exclusive tracks</div>
+                <div class="tier-features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Unlimited meditation</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">No ads</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">50 offline downloads/month</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Exclusive Pro meditations</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">All 5 categories</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Advanced tracking</span>
+                    </div>
+                    <button class="cta-button" onclick="openCheckout('pro')">Upgrade to Pro</button>
+                </div>
+            </div>
+            
+            <!-- PREMIUM TIER -->
+            <div class="tier">
+                <div class="tier-header">
+                    <div class="tier-name">Premium</div>
+                    <div class="tier-price">$49.99<span class="tier-price-small">/month</span></div>
+                </div>
+                <div class="tier-description">Maximum access + priority support</div>
+                <div class="tier-features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Unlimited meditation</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">No ads</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">200 offline downloads/month</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Exclusive Premium tracks</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text" style="font-weight:700;color:#d4880a;">🎙️ Guided Sessions (13 sessions)</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Priority support (2hr response)</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">All 5 categories</span>
+                    </div>
+                    <button class="cta-button" onclick="openCheckout('premium')">Upgrade to Premium</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Comparison Table -->
+        <div class="comparison-table">
+            <h2 style="color: #667eea; margin-bottom: 20px;">Feature Comparison</h2>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Free</th>
+                    <th>Base</th>
+                    <th>Pro</th>
+                    <th>Premium</th>
+                </tr>
+                <tr>
+                    <td class="feature-name">Price</td>
+                    <td class="included">$0</td>
+                    <td class="included">$20/mo</td>
+                    <td class="included">$29.99/mo</td>
+                    <td class="included">$49.99/mo</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Access Duration</td>
+                    <td class="excluded">30 min/month</td>
+                    <td class="included">Unlimited <span class="checkmark">✓</span></td>
+                    <td class="included">Unlimited <span class="checkmark">✓</span></td>
+                    <td class="included">Unlimited <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Ads</td>
+                    <td class="excluded">Yes (ads shown)</td>
+                    <td class="included">No <span class="checkmark">✓</span></td>
+                    <td class="included">No <span class="checkmark">✓</span></td>
+                    <td class="included">No <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">All Categories</td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Offline Downloads</td>
+                    <td class="excluded">No</td>
+                    <td class="excluded">No</td>
+                    <td class="included">50/month <span class="checkmark">✓</span></td>
+                    <td class="included">200/month <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Exclusive Meditations</td>
+                    <td class="excluded">No</td>
+                    <td class="excluded">No</td>
+                    <td class="included">Pro tracks <span class="checkmark">✓</span></td>
+                    <td class="included">Premium tracks <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">🎙️ Guided Sessions</td>
+                    <td class="excluded">No</td>
+                    <td class="excluded">No</td>
+                    <td class="excluded">No</td>
+                    <td class="included">13 sessions <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Priority Support</td>
+                    <td class="excluded">Standard (24hr)</td>
+                    <td class="excluded">Standard (24hr)</td>
+                    <td class="excluded">Standard (24hr)</td>
+                    <td class="included">Priority (2hr) <span class="checkmark">✓</span></td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Free Trial</td>
+                    <td class="excluded">N/A</td>
+                    <td class="included">14 days <span class="checkmark">✓</span></td>
+                    <td class="excluded">None</td>
+                    <td class="excluded">None</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Cancel Anytime</td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                    <td class="included">Yes <span class="checkmark">✓</span></td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions About Pricing</h2>
+            
+            <div class="faq-item active">
+                <h3>How do offline downloads work? <span>−</span></h3>
+                <p><strong>Pro tier:</strong> Download up to 50 meditations per month. <strong>Premium tier:</strong> Download up to 200 per month. Once downloaded, you can play them anytime without internet. Perfect for workouts, travel, or airplanes. Downloads reset each month.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Does the 14-day trial really cost nothing? <span>+</span></h3>
+                <p>Yes. Base tier gives you 14 full days of unlimited access at no charge. During the trial, you have access to everything: all meditations, all categories, no ads. Your card is charged only after 14 days. Cancel anytime during the trial and you won't be charged.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I upgrade or downgrade anytime? <span>+</span></h3>
+                <p>Absolutely. Upgrade to a higher tier anytime and you'll be charged a prorated amount. Downgrade anytime and we'll credit your account. Changes take effect immediately. Your meditation history always stays with you.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What happens if I cancel? <span>+</span></h3>
+                <p>You can cancel anytime with one click. No questions asked. Your access continues until the end of your current billing cycle. If you subscribed to Base ($20), you get access through your full month. No early termination fees.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do you refund partial months? <span>+</span></h3>
+                <p>No. But since you can cancel anytime, you only pay for the time you use. If you subscribe to Pro on the 15th and cancel on the 20th, you keep access until the 15th of next month.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Which tier should I choose? <span>+</span></h3>
+                <p><strong>Free:</strong> Try Pure first (30 min/month, ad-supported). <strong>Base:</strong> Unlimited access without ads, includes 14-day free trial. <strong>Pro:</strong> Offline downloads and exclusive meditations. <strong>Premium:</strong> Maximum access — 200 downloads/month, exclusive tracks, and priority support.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Pure Meditation. All rights reserved.</p>
+        <p>
+            <a href="/app.html">App</a> |
+            <a href="/faq.html">FAQ</a> |
+            <a href="/contact.html">Contact</a> |
+            <a href="/privacy.html">Privacy</a> |
+            <a href="/terms.html">Terms</a>
+        </p>
+    </footer>
+    
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(h3 => {
+            h3.addEventListener('click', () => {
+                const item = h3.parentElement;
+                item.classList.toggle('active');
+                const toggle = h3.querySelector('span');
+                toggle.textContent = item.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+
+    <!-- ====================================================
+         CHECKOUT MODAL STYLES
+         ==================================================== -->
+    <style>
+    #checkout-modal {
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+        z-index: 9999; align-items: center; justify-content: center;
+        padding: 20px; animation: coFadeIn 0.2s ease;
+    }
+    #checkout-modal.open { display: flex; }
+    @keyframes coFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .checkout-box {
+        background: #fff; border-radius: 20px; padding: 40px 32px 32px;
+        max-width: 440px; width: 100%;
+        box-shadow: 0 24px 80px rgba(102,126,234,0.25);
+        position: relative; animation: coSlideUp 0.25s cubic-bezier(.22,.68,0,1.2);
+    }
+    @keyframes coSlideUp { from { transform: translateY(30px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+    .checkout-close {
+        position: absolute; top: 16px; right: 20px;
+        background: none; border: none; font-size: 1.6em;
+        cursor: pointer; color: #aaa; line-height: 1;
+    }
+    .checkout-close:hover { color: #333; }
+    .checkout-header { text-align: center; margin-bottom: 24px; }
+    .co-plan-name { font-size: 1.1em; color: #667eea; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .co-price { font-size: 2.8em; font-weight: 800; color: #1a1a2e; line-height: 1; }
+    .co-price span { font-size: 0.4em; color: #888; font-weight: 400; }
+    .co-trial { display: inline-block; background: #d4edda; color: #155724; font-size: 0.82em; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-top: 8px; }
+    .checkout-methods { display: flex; flex-direction: column; gap: 12px; }
+    .pay-btn {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        width: 100%; padding: 16px 20px; border-radius: 12px; border: 2px solid transparent;
+        font-size: 1em; font-weight: 600; cursor: pointer;
+        transition: all 0.18s ease; font-family: inherit; position: relative;
+    }
+    .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .pay-btn:active { transform: translateY(0); }
+    .btn-stripe { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+    .btn-stripe:hover { box-shadow: 0 8px 24px rgba(102,126,234,0.4); }
+    .btn-apple { background: #000; color: #fff; }
+    .btn-google { background: #fff; color: #3c4043; border: 2px solid #dadce0; }
+    .btn-paypal { background: #ffc439; color: #003087; border: 2px solid #ffc439; }
+    .btn-paypal:hover { background: #ffb020; box-shadow: 0 8px 24px rgba(255,196,57,0.4); }
+    .co-divider { display: flex; align-items: center; gap: 12px; color: #bbb; font-size: 0.82em; margin: 2px 0; }
+    .co-divider::before, .co-divider::after { content: ''; flex: 1; height: 1px; background: #eee; }
+    .checkout-secure { text-align: center; margin-top: 20px; font-size: 0.78em; color: #999; }
+    .btn-loading { pointer-events: none; opacity: 0.75; }
+    .btn-loading::after {
+        content: ''; position: absolute; right: 16px; top: 50%;
+        transform: translateY(-50%); width: 18px; height: 18px;
+        border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff;
+        border-radius: 50%; animation: cospin 0.7s linear infinite;
+    }
+    @keyframes cospin { to { transform: translateY(-50%) rotate(360deg); } }
+    #co-toast {
+        position: fixed; bottom: 24px; left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: #333; color: #fff; padding: 12px 24px;
+        border-radius: 30px; font-size: 0.9em; font-weight: 500;
+        z-index: 99999; transition: transform 0.3s ease; pointer-events: none;
+    }
+    #co-toast.show { transform: translateX(-50%) translateY(0); }
+    #co-toast.co-error { background: #e53935; }
+    #co-toast.co-success { background: #2e7d32; }
+    </style>
+
+    <!-- ====================================================
+         CHECKOUT MODAL HTML
+         ==================================================== -->
+    <div id="checkout-modal">
+        <div class="checkout-box">
+            <button class="checkout-close" onclick="closeCheckout()" aria-label="Close">&times;</button>
+            <div class="checkout-header">
+                <div class="co-plan-name" id="co-plan-name">Base Plan</div>
+                <div class="co-price" id="co-price">$20<span>/month</span></div>
+                <div class="co-trial" id="co-trial" style="display:none">✓ 14-Day Free Trial — No charge today</div>
+            </div>
+            <div class="checkout-methods">
+                <button class="pay-btn btn-stripe" id="co-btn-card" onclick="startStripeCheckout()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    Pay with Card
+                </button>
+                <button class="pay-btn btn-apple" id="co-btn-apple" onclick="startStripeCheckout()" style="display:none">
+                    <svg width="18" height="18" viewBox="0 0 814 1000" fill="currentColor"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 405.2 38 314.8 38 264.7c0-141.9 92.5-216.8 183.5-216.8 48.7 0 89.2 32.1 119.9 32.1 29.4 0 75.4-34.1 131.9-34.1 20.9 0 108.2 1.9 166.9 73.4zm-56.7-184.7c27.5-32.4 47.2-77.7 47.2-123.1 0-6.1-.5-12.2-1.6-17.2-45.1 1.7-98.9 30.2-131.5 66.8-24.5 27.5-48.1 72.8-48.1 118.8 0 6.7 1.1 13.4 1.6 15.5 2.7.5 7.1 1.1 11.6 1.1 40.8 0 87.7-27.5 120.8-61.9z"/></svg>
+                    Pay with Apple Pay
+                </button>
+                <button class="pay-btn btn-google" id="co-btn-google" onclick="startStripeCheckout()">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                    Pay with Google Pay
+                </button>
+                <div class="co-divider">or</div>
+                <button class="pay-btn btn-paypal" id="co-btn-paypal" onclick="startPaypalCheckout()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#003087"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+                    Pay with PayPal
+                </button>
+            </div>
+            <div class="checkout-secure">
+                🔒 Secured by Stripe &amp; PayPal — 256-bit SSL encryption. Cancel anytime.
+            </div>
+        </div>
+    </div>
+
+    <div id="co-toast"></div>
+
+    <!-- ====================================================
+         CHECKOUT JAVASCRIPT
+         ==================================================== -->
+    <script>
+    const BACKEND = 'https://melo-backend-production-b12f.up.railway.app';
+    let _tier = null;
+    const prices = { base: '$20', pro: '$29.99', premium: '$49.99' };
+    const names  = { base: 'Base Plan', pro: 'Pro Plan', premium: 'Premium Plan' };
+
+    function openCheckout(tier) {
+        _tier = tier;
+        document.getElementById('co-plan-name').textContent = names[tier];
+        document.getElementById('co-price').innerHTML = prices[tier] + '<span>/month</span>';
+        const trial = document.getElementById('co-trial');
+        trial.style.display = tier === 'base' ? 'inline-block' : 'none';
+        // Show Apple Pay only if supported
+        const appleBtn = document.getElementById('co-btn-apple');
+        if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+            appleBtn.style.display = 'flex';
+        }
+        document.getElementById('checkout-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCheckout() {
+        document.getElementById('checkout-modal').classList.remove('open');
+        document.body.style.overflow = '';
+        ['co-btn-card','co-btn-apple','co-btn-google','co-btn-paypal'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('btn-loading');
+        });
+    }
+
+    document.getElementById('checkout-modal').addEventListener('click', e => {
+        if (e.target === document.getElementById('checkout-modal')) closeCheckout();
+    });
+
+    async function startStripeCheckout() {
+        if (!_tier) return;
+        const userId = localStorage.getItem('pm_user_id');
+        const btn = document.getElementById('co-btn-card');
+        btn.classList.add('btn-loading');
+        if (!userId) {
+            showCoToast('Create a free account first to subscribe.', 'co-error');
+            btn.classList.remove('btn-loading');
+            setTimeout(() => { closeCheckout(); window.location.href = `app.html?signup=true&tier=${_tier}`; }, 1400);
+            return;
+        }
+        try {
+            const res  = await fetch(`${BACKEND}/api/upgrade`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId, tier: _tier })
+            });
+            const data = await res.json();
+            if (data.checkout_url) { window.location.href = data.checkout_url; }
+            else throw new Error(data.error || 'Checkout error');
+        } catch (err) {
+            btn.classList.remove('btn-loading');
+            showCoToast('Something went wrong. Please try again.', 'co-error');
+        }
+    }
+
+    async function startPaypalCheckout() {
+        if (!_tier) return;
+        const userId = localStorage.getItem('pm_user_id');
+        const btn = document.getElementById('co-btn-paypal');
+        btn.classList.add('btn-loading');
+        if (!userId) {
+            showCoToast('Create a free account first to subscribe.', 'co-error');
+            btn.classList.remove('btn-loading');
+            setTimeout(() => { closeCheckout(); window.location.href = `app.html?signup=true&tier=${_tier}`; }, 1400);
+            return;
+        }
+        try {
+            const res  = await fetch(`${BACKEND}/api/upgrade/paypal`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId, tier: _tier })
+            });
+            const data = await res.json();
+            if (data.checkout_url) { window.location.href = data.checkout_url; }
+            else throw new Error(data.error || 'PayPal error');
+        } catch (err) {
+            btn.classList.remove('btn-loading');
+            showCoToast('PayPal unavailable. Please pay with card.', 'co-error');
+        }
+    }
+
+    function showCoToast(msg, cls = '') {
+        const t = document.getElementById('co-toast');
+        t.textContent = msg; t.className = `show ${cls}`;
+        setTimeout(() => { t.className = cls; }, 3200);
+    }
+
+    // Handle return from payment processors
+    (function() {
+        const p = new URLSearchParams(window.location.search);
+        if (p.get('upgraded')) {
+            const t = p.get('upgraded');
+            showCoToast(`🎉 Welcome to ${names[t] || t}! Your plan is now active.`, 'co-success');
+            window.history.replaceState({}, '', window.location.pathname);
+        }
+        if (p.get('canceled')) {
+            showCoToast('Checkout canceled — no changes made.', '');
+            window.history.replaceState({}, '', window.location.pathname);
+        }
+    })();
+    </script>
+</body>
+</html>
